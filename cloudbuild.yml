@@ -1,0 +1,14 @@
+steps:
+  - name: 'python:3.11-slim'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "==Starting Cloud Build for Python Application=="
+        python hello.py
+        echo "==Cloud Build Completed Successfully=="
+        
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+# logsBucket: 'gs://gcp-devops-first-bucket'

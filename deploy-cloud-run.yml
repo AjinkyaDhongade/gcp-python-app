@@ -1,0 +1,29 @@
+steps:
+  # Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'asia-south1-docker.pkg.dev/gcp-project-506114/gcp-devops-repository/gcp-python-app:v2.0', '.']
+
+  # Push the Docker image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'asia-south1-docker.pkg.dev/gcp-project-506114/gcp-devops-repository/gcp-python-app:v2.0']
+
+  # Deploy image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "==Deploying to Cloud Run=="
+        gcloud run deploy gcp-python-app \
+          --image asia-south1-docker.pkg.dev/gcp-project-506114/gcp-devops-repository/gcp-python-app:v2.0 \
+          --region asia-south1 \
+          --platform managed \
+          --allow-unauthenticated \
+          --port 8080
+        echo "==Deployment Completed Successfully=="
+
+images: ['asia-south1-docker.pkg.dev/gcp-project-506114/gcp-devops-repository/gcp-python-app:v2.0']
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+  

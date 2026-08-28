@@ -7,7 +7,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'asia-south1-docker.pkg.dev/gcp-project-506114/gcp-devops-repository/gcp-python-app:v1.0']
 
-image: 'asia-south1-docker.pkg.dev/gcp-project-506114/gcp-devops-repository/gcp-python-app:v1.0'
+images: 'asia-south1-docker.pkg.dev/gcp-project-506114/gcp-devops-repository/gcp-python-app:v1.0'
 
 options:
   logging: CLOUD_LOGGING_ONLY

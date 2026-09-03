@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return "Hello, World! This is a simple Python application running on Google Cloud Platform in docker container."
+    return "Hello, World! This is a simple Python application running on Google Cloud Platform in docker container with Version 3.0"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
